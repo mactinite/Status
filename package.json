@@ -4,9 +4,6 @@
   "displayName": "Status",
   "description": "A base component that handles status effects with durations and can be extended for multiple use cases.",
   "unity": "2020.3",
-  "dependencies": {
-    "com.mactinite.damagereceiver": "0.0.1"
-  },
   "author": {
     "name": "Hunter MacDonald",
     "url": "https://github.com/mactinite"
