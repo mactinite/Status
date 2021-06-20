@@ -26,9 +26,9 @@ namespace mactinite.Status
             var existingEffectIndex = GetStatusIndex(effect);
             if (effect.stacks || existingEffectIndex == -1)
             {
-                statusEffects.Add(effect);
+                statusEffects.Add(effect.Clone());
             }
-            else
+            else if(effect.stacks == false)
             {
                 statusEffects[existingEffectIndex].Reset(gameObject);
             }
