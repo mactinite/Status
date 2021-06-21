@@ -25,7 +25,7 @@ namespace mactinite.Status
         /// Called to update the status effect.
         /// this should be called every frame (Update) while the status effect is on the stack
         /// </summary>
-        /// <param name="root">root game object in context</param>
+        /// <param name="root">root gameobject for effectable</param>
         public virtual void OnTick(GameObject root)
         {
 
@@ -43,7 +43,7 @@ namespace mactinite.Status
         /// Called when the status effect pops and is removed from the stack.
         /// Can be used to add effects at the end of a status effect
         /// </summary>
-        /// <param name="d">DamageReceiver in context</param>
+        /// <param name="root">root gameobject for effectable</param>
         public virtual void OnPop(GameObject root)
         {
 
@@ -53,8 +53,8 @@ namespace mactinite.Status
         /// Resets the status effect to it's initial state
         /// Can be used to extend non-stacking status effects.
         /// </summary>
-        /// <param name="d">DamageReceiver in context</param>
-        public virtual void Reset(GameObject root)
+        /// <param name="root">root gameobject for effectable</param>
+        public virtual void Reset(GameObject root = null)
         {
             currentLifetime = 0;
             hasPopped = false;
@@ -62,7 +62,9 @@ namespace mactinite.Status
 
         public virtual StatusEffect Clone()
         {
-            return (StatusEffect)this.MemberwiseClone();
+            var clone = (StatusEffect)this.MemberwiseClone();
+            clone.Reset();
+            return clone;
         }
     }
 }
