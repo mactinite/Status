@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 namespace mactinite.Status
 {
     public class StatusEffectExtension : MonoBehaviour, IEffectable
     {
-        
+
         public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
         private void Update()
@@ -28,7 +28,7 @@ namespace mactinite.Status
             {
                 statusEffects.Add(effect.Clone());
             }
-            else if(effect.stacks == false)
+            else if (effect.stacks == false)
             {
                 statusEffects[existingEffectIndex].Reset(gameObject);
             }
@@ -36,14 +36,18 @@ namespace mactinite.Status
 
         int GetStatusIndex(StatusEffect effect)
         {
-            if (statusEffects.Contains(effect))
+            // need to check if an effect of this type is in the list, a simple contains check won't work
+            int index = statusEffects.FindLastIndex((statusEffect) =>
             {
-                return statusEffects.IndexOf(effect);
-            }
-            else
-            {
-                return -1;
-            }
+                if (effect.name == statusEffect.name)
+                {
+                    return true;
+                }
+
+                return false;
+            });
+
+            return index;
         }
     }
 }
