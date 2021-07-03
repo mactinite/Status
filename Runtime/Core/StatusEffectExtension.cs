@@ -34,6 +34,11 @@ namespace mactinite.Status
             }
         }
 
+        // checks to see if status effect is in the status effect list and returns a bool
+        public bool IsStatusEffectActive(StatusEffect effect){
+            return GetStatusIndex(effect) != -1;
+        }
+        
         int GetStatusIndex(StatusEffect effect)
         {
             // need to check if an effect of this type is in the list, a simple contains check won't work
